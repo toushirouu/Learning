@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html lang="pl">
+<head>
+	<meta charset="utf-8" />
+	<title>Dzisiejsza data</title>
+
+	<script>
+	
+	
+	
+	function dzienTygodnia(){
+	var dniTygodnia = ["Niedziela", "Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota"];
+	var napis = "";
+	for(i=0; i<=6; i++)
+	{
+	napis = napis + dniTygodnia[i] + " ";
+	}
+	document.getElementById("dni").innerHTML = napis;
+}
+
+</script>
+
+
+</head>
+<body onload="dzienTygodnia();">
+
+<div id="dni"></div>
+</body>
+</html>
