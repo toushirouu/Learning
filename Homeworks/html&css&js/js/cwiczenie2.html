@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html lang="pl">
+<head>
+	<meta charset="utf-8" />
+	<title>Dzien tygodnia</title>
+	<script>
+	
+	var data = new Date();
+	var dzien = data.getDay();
+	
+	function dzienTygodnia(){
+	switch (dzien){
+	case 0: alert('niedziela');
+	break;
+	case 1: alert('poniedziałek');
+	break;
+	case 2: alert('wtorek');
+	break;
+	case 3: alert('środa');
+	break;
+	case 4: alert('czwartek');
+	break;
+	case 5: alert('piątek');
+	break;
+	case 6: alert('sobota');
+	break;
+}
+}
+</script>
+</head>
+<body onload=dzienTygodnia();>
+</body>
+</html>
