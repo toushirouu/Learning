@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html lang="pl">
+<head>
+	<meta charset="utf-8" />
+	<title>Dzisiejsza data</title>
+
+	<script>
+	
+	var data = new Date();
+	var dzien = data.getDay();
+	
+	function dzienTygodnia(){
+	switch (dzien){
+	case 0: document.getElementById("today").innerHTML = "Niedziela";
+	break;
+	case 1: document.getElementById("today").innerHTML = "Poniedziałek";
+	break;
+	case 2: document.getElementById("today").innerHTML = "Wtorek";
+	break;
+	case 3: document.getElementById("today").innerHTML = "Środa";
+	break;
+	case 4: document.getElementById("today").innerHTML = "Czwartek";
+	break;
+	case 5: document.getElementById("today").innerHTML = "Piątek";
+	break;
+	case 6: document.getElementById("today").innerHTML = "Sobota";
+	break;
+}
+}
+</script>
+
+<script>
+
+
+function ktoryDzien()
+	{
+		var dzisiaj = new Date();
+var dzien = dzisiaj.getDate();
+		if (dzien<10) dzien="0"+dzien;
+	
+		var miesiac = dzisiaj.getMonth()+1;
+		if (miesiac<10) miesiac="0"+miesiac;
+		var rok = dzisiaj.getFullYear();
+		document.getElementById("zegar").innerHTML = dzien;
+		document.getElementById("zegar1").innerHTML = miesiac;
+		document.getElementById("zegar2").innerHTML = rok;
+	}
+</script>	
+
+</head>
+<body onload='dzienTygodnia(), ktoryDzien();'>
+
+	
+	<table>
+		<tbody id="zegar2" style = "float:left; border: 1px solid; padding-left: 3px; padding-right: 3px; ">
+		<tr><td></td></tr>
+		</tbody>
+		<tbody id="zegar1" style = "float:left; border-top: 1px solid black; border-bottom: 1px solid black; padding-left:3px; padding-right:3px;  " >
+		<tr><td></td></tr>
+		</tbody>
+		<tbody id="zegar" style = "float:left; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; padding-left:3px; padding-right:3px; ">
+		<tr><td></td></tr>
+		<tbody id="today" style = "float:left; border: 1px solid black; padding-left:3px; padding-right:3px; ">
+		<tr><td></td></tr>
+		
+		
+	</table>
+
+
+</body>
+</html>
