@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29201.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Another If Statement", "Another If Statement\Another If Statement.csproj", "{ABFA4540-2058-41F0-AF86-EE4EC46123B4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ABFA4540-2058-41F0-AF86-EE4EC46123B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABFA4540-2058-41F0-AF86-EE4EC46123B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABFA4540-2058-41F0-AF86-EE4EC46123B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABFA4540-2058-41F0-AF86-EE4EC46123B4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {107FF00F-7D2C-45E0-9754-EA8DA07410C4}
+	EndGlobalSection
+EndGlobal
