@@ -10,23 +10,35 @@ namespace Object_Methods
     {
         public string name;
         public string major;
+        public string paid;
         public double gpa;
-        
-        public Student (string aName, string aMajor, double aGpa)
+
+
+        public Student(string aName, string aMajor, string aPaid, double aGpa)
         {
             name = aName;
             major = aMajor;
             gpa = aGpa;
-       
+            paid = aPaid;
+
         }
         public bool HasHonors()
         {
-            if (gpa >= 3.5) 
+            if (gpa >= 3.5)
             {
                 return true;
             }
             return false;
-         
+
+        }
+
+        public bool HasPaid()
+        {
+            if (paid == "yes" || paid == "Yes" || paid == "YES")
+            {
+                return true;
+            }
+            return false;
         }
 
 }
