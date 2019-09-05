@@ -12,11 +12,34 @@ namespace PlanMaster
         {
             MainMenu();
             int num1 = Convert.ToInt32(Console.ReadLine());
-
+            int c = 1;
             do
             {
+                if (c > 2)
 
-            } while (); //in progress
+                {
+                    Console.WriteLine("");
+                    MainMenu();
+                    int number = Convert.ToInt32(Console.ReadLine());
+                    num1 = number;
+                }
+                switch (num1)
+                {
+                    case 1:
+                        PlanMenu();
+                        break;
+                    case 2:
+                        Console.WriteLine("test"); //in progress
+                        break;
+                    case 3:
+                        Console.WriteLine("test"); //in progress
+                        break;
+                    default:
+                        Console.WriteLine("Błędna wartość");
+                        break;
+                }
+                c++;
+            } while (num1 > 2 || num1 <0); 
 
             PlanMenu();
             int i = 1;
@@ -26,7 +49,7 @@ namespace PlanMaster
             {
                 if (i > 2)
                 {
-                    Console.WriteLine();
+                    Console.WriteLine("");
                     PlanMenu();
                     int number = Convert.ToInt32(Console.ReadLine());
                     num = number;
@@ -46,7 +69,7 @@ namespace PlanMaster
                         break;
 
                     default:
-                        Console.WriteLine("Błędna na wartość");
+                        Console.WriteLine("Błędna wartość");
                         break;
                 }
                 i++;
@@ -71,9 +94,9 @@ namespace PlanMaster
             Console.WriteLine();
             Console.WriteLine("Wybierz plan treningowy: ");
             Console.WriteLine("");
-            Console.WriteLine("Plan na trzy dni - wciśnij 0");
-            Console.WriteLine("Plan na cztery dni - wciśnij 1");
-            Console.WriteLine("Plan na pięć dni - wciśnij 2");
+            Console.WriteLine("Plan na trzy dni - wciśnij 1");
+            Console.WriteLine("Plan na cztery dni - wciśnij 2");
+            Console.WriteLine("Plan na pięć dni - wciśnij 3");
             Console.WriteLine("");
             return "";
         }
