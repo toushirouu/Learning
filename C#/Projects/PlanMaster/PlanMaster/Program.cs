@@ -11,113 +11,106 @@ namespace PlanMaster
         static void Main(string[] args)
         {
             MainMenu();
-            int num1 = Convert.ToInt32(Console.ReadLine());
-            int c = 1;
-            do
+        }
+        static void MainMenu()
+        {
+            int num;
+            for (int m = 1; m <= 2; m++)
             {
-                if (c > 2)
+                Console.Write("Witaj w Plan Master, wciśnij dowolny klawisz, aby kontunować: ");
+                Console.ReadKey();
+                Console.WriteLine("");
+                Console.WriteLine("Plany treningowe - wciśnij 1");
+                Console.WriteLine("Kalkulator kalorii - wciśnij 2");
+                Console.WriteLine("Plany żywienia - wciśnij 3");
+                Console.WriteLine("");
 
-                {
-                    Console.WriteLine("");
-                    MainMenu();
-                    int number = Convert.ToInt32(Console.ReadLine());
-                    num1 = number;
-                }
-                switch (num1)
+                num = Convert.ToInt32(Console.ReadLine());
+
+                switch (num)
                 {
                     case 1:
                         PlanMenu();
+                        m++;
                         break;
                     case 2:
+                        m++;
                         Console.WriteLine("test"); //in progress
                         break;
                     case 3:
+                        m++;
                         Console.WriteLine("test"); //in progress
                         break;
                     default:
                         Console.WriteLine("Błędna wartość");
+                        m--;
                         break;
                 }
-                c++;
-            } while (num1 > 2 || num1 <0); 
-
-            PlanMenu();
-            int i = 1;
-            int num = Convert.ToInt32(Console.ReadLine());
-
-            do
+            }
+        }
+        static void PlanMenu()
+        {
+            for (int i = 1; i <= 2; i++)
             {
-                if (i > 2)
-                {
-                    Console.WriteLine("");
-                    PlanMenu();
-                    int number = Convert.ToInt32(Console.ReadLine());
-                    num = number;
-                }
+                Console.Write("Wybierz dwolony plan treningowy: ");
+                Console.WriteLine();
+                Console.WriteLine("Wybierz plan treningowy: ");
+                Console.WriteLine("");
+                Console.WriteLine("Plan na trzy dni - wciśnij 1");
+                Console.WriteLine("Plan na cztery dni - wciśnij 2");
+                Console.WriteLine("Plan na pięć dni - wciśnij 3");
+                Console.WriteLine("Powrót do menu głównego - wciśnij 4");
+                Console.WriteLine("");
+
+                int num = Convert.ToInt32(Console.ReadLine());
+
                 switch (num)
                 {
                     case 1:
                         ThreeDaysPlan();
+                        i++;
                         break;
 
                     case 2:
                         FourDaysPlan();
+                        i++;
                         break;
 
                     case 3:
                         FiveDaysPlan();
+                        i++;
+                        break;
+                    case 4:
+                        MainMenu();
+                        i++;
                         break;
 
                     default:
                         Console.WriteLine("Błędna wartość");
+                        i--;
                         break;
                 }
-                i++;
-            } while (num > 2 || num < 0);
-        }
 
-        static string MainMenu()
-        {
-            Console.Write("Witaj w Plan Master, wciśnij dowolny klawisz, aby kontunować: ");
-            Console.ReadKey();
-            Console.WriteLine("");
-            Console.WriteLine("Plany treningowe - wciśnij 1");
-            Console.WriteLine("Kalkulator kalorii - wciśnij 2");
-            Console.WriteLine("Plany żywienia - wciśnij 3");
-            Console.WriteLine("");
-            return "";
+            }
         }
-
-        static string PlanMenu()
-        {
-            Console.Write("Wybierz dwolony plan treningowy: ");
-            Console.WriteLine();
-            Console.WriteLine("Wybierz plan treningowy: ");
-            Console.WriteLine("");
-            Console.WriteLine("Plan na trzy dni - wciśnij 1");
-            Console.WriteLine("Plan na cztery dni - wciśnij 2");
-            Console.WriteLine("Plan na pięć dni - wciśnij 3");
-            Console.WriteLine("");
-            return "";
-        }
-        static string ThreeDaysPlan()
+        static void ThreeDaysPlan()
         {
             Console.WriteLine("Plan na trzy dni");
 
-            return "";
+           
         }
-        static string FourDaysPlan()
+        static void FourDaysPlan()
         {
             Console.WriteLine("Plan na cztery dni");
 
-            return "";
+            
         }
 
-        static string FiveDaysPlan()
+        static void FiveDaysPlan()
         {
             Console.WriteLine("Plan na pięć dni");
 
-            return "";
+           
         }
 
     }
