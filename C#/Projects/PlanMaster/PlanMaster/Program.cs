@@ -35,6 +35,7 @@ namespace PlanMaster
                         break;
                     case 2:
                         m++;
+                        BmrMenCalculator();
                         Console.WriteLine("test"); //in progress
                         break;
                     case 3:
@@ -113,6 +114,25 @@ namespace PlanMaster
            
         }
 
+        static void BmrMenCalculator()
+        {
+            Console.WriteLine("Podaj swój wiek");
+            int age = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Podaj Swoją wagę");
+            double kg = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Podaj swoj wzrost (w cm)");
+            double height = Convert.ToDouble(Console.ReadLine());
+            
+            double bmr = (9.99 * kg) + (6.25 * height) - (4.92 * age);
+
+            Console.WriteLine(bmr + " kcal");
+        }
+
+        static int WomenCalculator()
+        {
+
+            return 0;
+        }
     }
 
 }
