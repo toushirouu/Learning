@@ -10,85 +10,137 @@ namespace PlanMaster
     {
         static void Main(string[] args)
         {
+            try
+            {
 
-            Console.Write("Witaj w Plan Master!");
+                Console.WriteLine("Witaj w Plan Master!");
+                MainMenu();
+            }
+            catch (Exception s)
+            {
+                Console.WriteLine(s.Message);
+                Main(null);
+            }
+
+        }
+            /*
+            public static string RegisterLogin(string regLogin)
+            {
+                Console.WriteLine("Podaj login");
+                regLogin = Console.ReadLine();
+                return regLogin;
+            }
+            public static string RegisterPassword(string regPassword)
+            {
+
+                Console.WriteLine("Podaj haslo");
+                regPassword = Console.ReadLine();
+                string pass = regPassword;
+                return regPassword;
+
+            }
+            public static string TempLogin()
+            {
+                RegisterPassword(pass);
+            }
+            public static void Login()
+            {
+
+                Console.WriteLine("Podaj swój login");
+                string login = Console.ReadLine();
+                Console.WriteLine("Podaj swoje hasło");
+                string password = Console.ReadLine();
+
+                if (login == RegisterLogin(regLogin:"") && password == RegisterPassword(regPassword:""))
+                {
+                    Console.WriteLine("Witaj " + login);
+                    MainMenu();
+                }
+                else
+                {
+                    Console.WriteLine("Błędny login lub hasło");
+                    Login();
+                }
+              */
+        public static void LoginRegister()
+        {
             
-            MainMenu();
         }
         public static void MainMenu()
         {
-   
+
             Console.WriteLine("");
             Console.WriteLine("Plany treningowe - wciśnij 1");
             Console.WriteLine("Kalkulatory kalorii - wciśnij 2");
             Console.WriteLine("Plany żywienia - wciśnij 3");
             Console.WriteLine("");
 
-                int num = Convert.ToInt32(Console.ReadLine());
+            int num = Convert.ToInt32(Console.ReadLine());
 
-                switch (num)
-                {
-                    case 1:
-                        PlanMenu();
-                        break;
-                    case 2:
+            switch (num)
+            {
+                case 1:
+                    PlanMenu();
+                    break;
+                case 2:
                     CalcMenu();
-                        break;
-                    case 3:
-                        Console.WriteLine("test"); //in progress
-                        break;
-                    default:
-                        Console.WriteLine("Błędna wartość");
+                    break;
+                case 3:
+                    Console.WriteLine("test"); //in progress
+                    break;
+                default:
+                    Console.WriteLine("Błędna wartość");
                     MainMenu();
-                        break;
-                }
-            
+                    break;
+            }
+
+
         }
         public static void PlanMenu()
         {
-            
-                Console.Write("Wybierz dwolony plan treningowy: ");
-                Console.WriteLine();
-                Console.WriteLine("Wybierz plan treningowy: ");
-                Console.WriteLine("");
-                Console.WriteLine("Plan na trzy dni - wciśnij 1");
-                Console.WriteLine("Plan na cztery dni - wciśnij 2");
-                Console.WriteLine("Plan na pięć dni - wciśnij 3");
-                Console.WriteLine("Powrót do menu głównego - wciśnij 4");
-                Console.WriteLine("");
 
-                int num = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Wybierz dwolony plan treningowy: ");
+            Console.WriteLine();
+            Console.WriteLine("Wybierz plan treningowy: ");
+            Console.WriteLine("");
+            Console.WriteLine("Plan na trzy dni - wciśnij 1");
+            Console.WriteLine("Plan na cztery dni - wciśnij 2");
+            Console.WriteLine("Plan na pięć dni - wciśnij 3");
+            Console.WriteLine("Powrót do menu głównego - wciśnij 4");
+            Console.WriteLine("");
 
-                switch (num)
-                {
-                    case 1:
-                        ThreeDaysPlan();
-                        
-                        break;
+            int num = Convert.ToInt32(Console.ReadLine());
 
-                    case 2:
-                        FourDaysPlan();
-                        
-                        break;
+            switch (num)
+            {
+                case 1:
+                    ThreeDaysPlan();
 
-                    case 3:
-                        FiveDaysPlan();
-                        
-                        break;
-                    case 4:
-                        MainMenu();
-                        
-                        break;
+                    break;
 
-                    default:
-                        Console.WriteLine("Błędna wartość");
+                case 2:
+                    FourDaysPlan();
+
+                    break;
+
+                case 3:
+                    FiveDaysPlan();
+
+                    break;
+                case 4:
+                    MainMenu();
+
+                    break;
+
+                default:
+                    Console.WriteLine("Błędna wartość");
                     PlanMenu();
-                        break;
-                }
+                    break;
+            }
 
-            
+
         }
-       
+
         static void ThreeDaysPlan()
         {
             Console.WriteLine("Plan na trzy dni");
@@ -114,7 +166,7 @@ namespace PlanMaster
             Console.WriteLine("Kalkulator całkowitej przemiany materii (CPM) - wciśnij 2");
             Console.WriteLine("Cofnij - wciśnij 3");
             int num = Convert.ToInt32(Console.ReadLine());
-                
+
             switch (num)
             {
                 case 1:
@@ -145,7 +197,7 @@ namespace PlanMaster
             switch (num)
             {
                 case 1:
-                    Console.WriteLine(MenCalculator() + " kcal" );
+                    Console.WriteLine(MenCalculator() + " kcal");
                     break;
                 case 2:
                     Console.WriteLine(WomenCalculator() + "kcal");
@@ -251,44 +303,48 @@ namespace PlanMaster
                     break;
             }
         }
-            public static void ActivityWomen()
+        public static void ActivityWomen()
+        {
+            Console.Write("Wybierz swoją aktywność:");
+            Console.WriteLine("Brak aktywności, praca siedząca - wciśnij 1");
+            Console.WriteLine("Niska aktywność (praca siedząca i 1-2 treningi w tygodniu) - wciśnij 2");
+            Console.WriteLine("Średnia aktywność (praca siedząca i treningi 3-4 razy w tygodniu) - wciśnij 3");
+            Console.WriteLine("Wysoka aktywność (praca fizyczna i 3-4 treningi w tygodniu) - wciśnij 4");
+            Console.WriteLine("Bardzo wysoka aktywność (zawodowi sportowcy, osoby codziennie trenujące");
+            int num = Convert.ToInt32(Console.ReadLine());
+
+            switch (num)
             {
-                Console.Write("Wybierz swoją aktywność:");
-                Console.WriteLine("Brak aktywności, praca siedząca - wciśnij 1");
-                Console.WriteLine("Niska aktywność (praca siedząca i 1-2 treningi w tygodniu) - wciśnij 2");
-                Console.WriteLine("Średnia aktywność (praca siedząca i treningi 3-4 razy w tygodniu) - wciśnij 3");
-                Console.WriteLine("Wysoka aktywność (praca fizyczna i 3-4 treningi w tygodniu) - wciśnij 4");
-                Console.WriteLine("Bardzo wysoka aktywność (zawodowi sportowcy, osoby codziennie trenujące");
-                int num = Convert.ToInt32(Console.ReadLine());
+                case 1:
+                    Console.WriteLine(WomenCalculator() * 1.2 + " kcal");
+                    break;
+                case 2:
+                    Console.WriteLine(WomenCalculator() * 1.4 + " kcal");
+                    break;
+                case 3:
+                    Console.WriteLine(WomenCalculator() * 1.6 + " kcal");
+                    break;
+                case 4:
+                    Console.WriteLine(WomenCalculator() * 1.8 + " kcal");
+                    break;
+                case 5:
+                    Console.WriteLine(WomenCalculator() * 2 + " kcal");
+                    break;
 
-                switch (num)
-                {
-                    case 1:
-                        Console.WriteLine(WomenCalculator() * 1.2 + " kcal");
-                        break;
-                    case 2:
-                        Console.WriteLine(WomenCalculator() * 1.4 + " kcal");
-                        break;
-                    case 3:
-                        Console.WriteLine(WomenCalculator() * 1.6 + " kcal");
-                        break;
-                    case 4:
-                        Console.WriteLine(WomenCalculator() * 1.8 + " kcal");
-                        break;
-                    case 5:
-                        Console.WriteLine(WomenCalculator() * 2 + " kcal");
-                        break;
-
-                    default:
-                        Console.WriteLine("Błędna wartość, wciśnij dowolny klawisz by powtórzyć");
-                        Console.ReadKey();
-                        ActivityWomen();
-                        break;
-                }
-
+                default:
+                    Console.WriteLine("Błędna wartość, wciśnij dowolny klawisz by powtórzyć");
+                    Console.ReadKey();
+                    ActivityWomen();
+                    break;
             }
 
-        
+        }
+        public static void Target()
+        {
+
+        }
+
+
     }
 
 }
