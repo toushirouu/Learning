@@ -12,7 +12,36 @@ namespace PlanMaster
         {
             try
             {
-                LoginRegister();
+                Console.WriteLine("Logowanie - wciśnij 1");
+                Console.WriteLine("Rejestracja - wciśnij 2");
+                int num = Convert.ToInt32(Console.ReadLine());
+                string log;
+                string pass;
+
+                switch (num)
+                {
+                    case 1:
+                        Console.WriteLine("Podaj swój Login");
+                        log = Console.ReadLine();
+                        Login(log);
+                        Console.WriteLine("Podaj swoje hasło");
+                        pass = Console.ReadLine();
+                        Password(pass);
+                        break;
+                        
+
+
+                    case 2:
+
+                        break;
+                    default:
+                        Console.WriteLine("Błędny login lub hasło");
+                        break;
+
+                }
+                Console.WriteLine(log + pass);
+                MainMenu();
+                
             }
             catch (Exception s)
             {
@@ -20,7 +49,21 @@ namespace PlanMaster
                 Main(null);
             }
         }
-        public static void LoginRegister()
+        public static string Login(string login)
+        {
+            
+            login = Console.ReadLine();
+            return login;
+        }
+        public static string Password(string password)
+        {
+
+            password = Console.ReadLine();
+            return password;
+        }
+
+        public static string Rejestracja
+        /*public static void LoginRegister()
         {
             string login;
             string password;
@@ -81,7 +124,7 @@ namespace PlanMaster
                     Console.WriteLine("Błędna wartość");
                     break;
             }
-        }
+        }*/
         public static void MainMenu()
         {
 
