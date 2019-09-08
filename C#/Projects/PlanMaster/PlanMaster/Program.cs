@@ -10,37 +10,10 @@ namespace PlanMaster
     {
         static void Main(string[] args)
         {
+           
             try
             {
-                Console.WriteLine("Logowanie - wciśnij 1");
-                Console.WriteLine("Rejestracja - wciśnij 2");
-                int num = Convert.ToInt32(Console.ReadLine());
-                string log;
-                string pass;
-
-                switch (num)
-                {
-                    case 1:
-                        Console.WriteLine("Podaj swój Login");
-                        log = Console.ReadLine();
-                        Login(log);
-                        Console.WriteLine("Podaj swoje hasło");
-                        pass = Console.ReadLine();
-                        Password(pass);
-                        break;
-                        
-
-
-                    case 2:
-
-                        break;
-                    default:
-                        Console.WriteLine("Błędny login lub hasło");
-                        break;
-
-                }
-                Console.WriteLine(log + pass);
-                MainMenu();
+                LoginRegister();
                 
             }
             catch (Exception s)
@@ -49,86 +22,66 @@ namespace PlanMaster
                 Main(null);
             }
         }
-        public static string Login(string login)
+        public static void LoginRegister()
         {
-            
-            login = Console.ReadLine();
-            return login;
-        }
-        public static string Password(string password)
-        {
+            string log;
+            string logReg = null; 
+            string pass;
+            string passReg = null;
+            int count = 0;
 
-            password = Console.ReadLine();
-            return password;
-        }
-
-        public static string Rejestracja
-        /*public static void LoginRegister()
-        {
-            string login;
-            string password;
-            string regLogin = "";
-            string regPassword = "";
-
-            Console.WriteLine("Witaj w Plan Master!");
-            Console.WriteLine("Logowanie - wciśnij 1");
-            Console.WriteLine("Rejestracja - wciśnij 2");
-            int num = Convert.ToInt32(Console.ReadLine());
-
-
-            switch (num)
+            do
             {
-                case 1:
-                    for (int i = 0; i < 1; i++)
-                    {
-                        
+                Console.WriteLine("Logowanie - wciśnij 1");
+                Console.WriteLine("Rejestracja - wciśnij 2");
+                int num = Convert.ToInt32(Console.ReadLine());
+                
 
-                        Console.WriteLine("Podaj swój login");
-                        login = Console.ReadLine();
+                switch (num)
+                {
+
+                    case 1:
+
+                        Console.WriteLine("Podaj swój Login");
+                        log = Console.ReadLine();
                         Console.WriteLine("Podaj swoje hasło");
-                        password = Console.ReadLine();
-                        if (login == regLogin && password == regPassword)
+                        pass = Console.ReadLine();
+
+                        if (log == logReg && pass == passReg)
                         {
-                            Console.WriteLine("Witaj " + login);
-                            LoginRegister();
+                            Console.WriteLine("Poprawnie zalogowano");
+                            MainMenu();
                         }
                         else
-                            i--;
-                        Console.WriteLine("Błędny login lub hasło");
-                    }
+                        {
+                            Console.WriteLine("Złe hasło lub login");
+                            count++;
+                        }
+                        break;
 
-                    break;
-                case 2:
-                    
-                    string Logowanie ()
-                    {
-                        
-                        string result;
-                        result = "lol";
-                        return result;
-                    }
-                    string test;
-                    test = Logowanie();
-                    Console.WriteLine(test);
+                    case 2:
 
-                    Console.WriteLine("Podaj login");
-                    regLogin = Console.ReadLine();
-                    Console.WriteLine("Podaj hasło");
-                    regPassword = Console.ReadLine();
-                    Console.WriteLine("Witaj " + regLogin);
-                    login = regLogin;
-                    password = regPassword;
-                    LoginRegister();
-                    break;
-                default:
-                    Console.WriteLine("Błędna wartość");
-                    break;
-            }
-        }*/
+                        Console.WriteLine("Podaj login");
+                        logReg = Console.ReadLine();
+                        Console.WriteLine("Podaj hasło");
+                        passReg = Console.ReadLine();
+                        count++;
+                        break;
+
+                    default:
+                        Console.WriteLine("Błędna wartość");
+                        count++;
+                        break;
+                   
+                }
+            } while (count > 0);
+        }
+  
         public static void MainMenu()
         {
 
             Console.WriteLine("");
+            Console.WriteLine("Witaj w Plan Master!");
             Console.WriteLine("Plany treningowe - wciśnij 1");
             Console.WriteLine("Kalkulatory kalorii - wciśnij 2");
             Console.WriteLine("Plany żywienia - wciśnij 3");
@@ -152,11 +105,10 @@ namespace PlanMaster
                     MainMenu();
                     break;
             }
-
-
         }
         public static void PlanMenu()
         {
+
 
             Console.Write("Wybierz dwolony plan treningowy: ");
             Console.WriteLine();
