@@ -12,59 +12,75 @@ namespace PlanMaster
         {
             try
             {
-
-                Console.WriteLine("Witaj w Plan Master!");
-                MainMenu();
+                LoginRegister();
             }
             catch (Exception s)
             {
                 Console.WriteLine(s.Message);
                 Main(null);
             }
-
         }
-            /*
-            public static string RegisterLogin(string regLogin)
-            {
-                Console.WriteLine("Podaj login");
-                regLogin = Console.ReadLine();
-                return regLogin;
-            }
-            public static string RegisterPassword(string regPassword)
-            {
-
-                Console.WriteLine("Podaj haslo");
-                regPassword = Console.ReadLine();
-                string pass = regPassword;
-                return regPassword;
-
-            }
-            public static string TempLogin()
-            {
-                RegisterPassword(pass);
-            }
-            public static void Login()
-            {
-
-                Console.WriteLine("Podaj swój login");
-                string login = Console.ReadLine();
-                Console.WriteLine("Podaj swoje hasło");
-                string password = Console.ReadLine();
-
-                if (login == RegisterLogin(regLogin:"") && password == RegisterPassword(regPassword:""))
-                {
-                    Console.WriteLine("Witaj " + login);
-                    MainMenu();
-                }
-                else
-                {
-                    Console.WriteLine("Błędny login lub hasło");
-                    Login();
-                }
-              */
         public static void LoginRegister()
         {
-            
+            string login;
+            string password;
+            string regLogin = "";
+            string regPassword = "";
+
+            Console.WriteLine("Witaj w Plan Master!");
+            Console.WriteLine("Logowanie - wciśnij 1");
+            Console.WriteLine("Rejestracja - wciśnij 2");
+            int num = Convert.ToInt32(Console.ReadLine());
+
+
+            switch (num)
+            {
+                case 1:
+                    for (int i = 0; i < 1; i++)
+                    {
+                        
+
+                        Console.WriteLine("Podaj swój login");
+                        login = Console.ReadLine();
+                        Console.WriteLine("Podaj swoje hasło");
+                        password = Console.ReadLine();
+                        if (login == regLogin && password == regPassword)
+                        {
+                            Console.WriteLine("Witaj " + login);
+                            LoginRegister();
+                        }
+                        else
+                            i--;
+                        Console.WriteLine("Błędny login lub hasło");
+                    }
+
+                    break;
+                case 2:
+                    
+                    string Logowanie ()
+                    {
+                        
+                        string result;
+                        result = "lol";
+                        return result;
+                    }
+                    string test;
+                    test = Logowanie();
+                    Console.WriteLine(test);
+
+                    Console.WriteLine("Podaj login");
+                    regLogin = Console.ReadLine();
+                    Console.WriteLine("Podaj hasło");
+                    regPassword = Console.ReadLine();
+                    Console.WriteLine("Witaj " + regLogin);
+                    login = regLogin;
+                    password = regPassword;
+                    LoginRegister();
+                    break;
+                default:
+                    Console.WriteLine("Błędna wartość");
+                    break;
+            }
         }
         public static void MainMenu()
         {
@@ -137,8 +153,6 @@ namespace PlanMaster
                     PlanMenu();
                     break;
             }
-
-
         }
 
         static void ThreeDaysPlan()
@@ -344,7 +358,5 @@ namespace PlanMaster
 
         }
 
-
     }
-
 }
