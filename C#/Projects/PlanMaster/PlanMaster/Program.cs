@@ -10,68 +10,72 @@ namespace PlanMaster
     {
         static void Main(string[] args)
         {
-           
-            try
-            {
                 string log;
                 string logReg = null;
                 string pass;
                 string passReg = null;
                 int count = 0;
-
-                do
-                {
-                    Console.WriteLine("Logowanie - wciśnij 1");
-                    Console.WriteLine("Rejestracja - wciśnij 2");
-                    int num = Convert.ToInt32(Console.ReadLine());
-
-
-                    switch (num)
-                    {
-
-                        case 1:
-
-                            Console.WriteLine("Podaj swój Login");
-                            log = Console.ReadLine();
-                            Console.WriteLine("Podaj swoje hasło");
-                            pass = Console.ReadLine();
-
-                            if (log == logReg && pass == passReg)
-                            {
-                                Console.WriteLine("Poprawnie zalogowano");
-                                MainMenu();
-                            }
-                            else
-                            {
-                                Console.WriteLine("Złe hasło lub login");
-                                count++;
-                            }
-                            break;
-
-                        case 2:
-
-                            Console.WriteLine("Podaj login");
-                            logReg = Console.ReadLine();
-                            Console.WriteLine("Podaj hasło");
-                            passReg = Console.ReadLine();
-                            count++;
-                            break;
-
-                        default:
-                            Console.WriteLine("Błędna wartość");
-                            count++;
-                            break;
-
-                    }
-                } while (count > 0);
-
-            }
-            catch (Exception s)
+            for (int i = 0; i < 1; i++)
             {
-                Console.WriteLine(s.Message);
-                Main(null);
+                try
+                { 
+                    do
+                    {
+                        Console.WriteLine("Logowanie - wciśnij 1");
+                        Console.WriteLine("Rejestracja - wciśnij 2");
+                        int num = Convert.ToInt32(Console.ReadLine());
+
+
+                        switch (num)
+                        {
+
+                            case 1:
+
+                                Console.WriteLine("Podaj swój Login");
+                                log = Console.ReadLine();
+                                Console.WriteLine("Podaj swoje hasło");
+                                pass = Console.ReadLine();
+
+                                if (log == logReg && pass == passReg)
+                                {
+                                    Console.WriteLine("Poprawnie zalogowano");
+                                    MainMenu();
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Złe hasło lub login");
+                                    count++;
+                                }
+                                break;
+
+                            case 2:
+
+                                Console.WriteLine("Podaj login");
+                                logReg = Console.ReadLine();
+                                Console.WriteLine("Podaj hasło");
+                                passReg = Console.ReadLine();
+                                count++;
+                                break;
+
+                            default:
+                                Console.WriteLine("Błędna wartość");
+                                count++;
+                                break;
+
+                        }
+                    } while (count > 0);
+                }
+
+                catch (Exception s)
+                {
+                    Console.WriteLine(s.Message);
+                    i--;
+                }
             }
         }
+
+        
+        
        
   
         public static void MainMenu()
