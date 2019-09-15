@@ -72,8 +72,6 @@ namespace PlanMaster
                         }
 
                     } while (count > 0);
-
-
                 }
             }
             catch (Exception s)
@@ -127,7 +125,6 @@ namespace PlanMaster
 
         public static void PlanMenu()
         {
-
 
             Console.Write("Wybierz dwolony plan treningowy: ");
             Console.WriteLine();
