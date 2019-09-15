@@ -9,21 +9,27 @@ namespace PlanMaster
     class Program
     {
         static void Main(string[] args)
-        {
-                string log;
-                string logReg = null;
-                string pass;
-                string passReg = null;
-                int count = 0;
-            for (int i = 0; i < 1; i++)
+       {
+            int i;
+            int num;
+            string log;
+            string logReg = null;
+            string pass;
+            string passReg = null;
+            int count = 0;
+
+            try
             {
-                try
-                { 
+                for (i = 0; i < 1; i++)
+                {
+
+
                     do
                     {
                         Console.WriteLine("Logowanie - wciśnij 1");
                         Console.WriteLine("Rejestracja - wciśnij 2");
-                        int num = Convert.ToInt32(Console.ReadLine());
+                        num = Convert.ToInt32(Console.ReadLine());
+                        Console.Clear();
 
 
                         switch (num)
@@ -35,11 +41,12 @@ namespace PlanMaster
                                 log = Console.ReadLine();
                                 Console.WriteLine("Podaj swoje hasło");
                                 pass = Console.ReadLine();
+                                Console.Clear();
 
                                 if (log == logReg && pass == passReg)
                                 {
                                     Console.WriteLine("Poprawnie zalogowano");
-                                    MainMenu();
+                                    count--;
                                 }
                                 else
                                 {
@@ -54,6 +61,7 @@ namespace PlanMaster
                                 logReg = Console.ReadLine();
                                 Console.WriteLine("Podaj hasło");
                                 passReg = Console.ReadLine();
+                                Console.Clear();
                                 count++;
                                 break;
 
@@ -61,53 +69,62 @@ namespace PlanMaster
                                 Console.WriteLine("Błędna wartość");
                                 count++;
                                 break;
-
                         }
+
                     } while (count > 0);
-                }
 
-                catch (Exception s)
-                {
-                    Console.WriteLine(s.Message);
-                    i--;
+
                 }
             }
-        }
-
-        
-        
-       
-  
-        public static void MainMenu()
-        {
-            
-
-            Console.WriteLine("");
-            Console.WriteLine("Witaj w Plan Master!");
-            Console.WriteLine("Plany treningowe - wciśnij 1");
-            Console.WriteLine("Kalkulatory kalorii - wciśnij 2");
-            Console.WriteLine("Plany żywienia - wciśnij 3");
-            Console.WriteLine("");
-
-            int num = Convert.ToInt32(Console.ReadLine());
-
-            switch (num)
+            catch (Exception s)
             {
-                case 1:
-                    PlanMenu();
-                    break;
-                case 2:
-                    CalcMenu();
-                    break;
-                case 3:
-                    Console.WriteLine("test"); //in progress
-                    break;
-                default:
-                    Console.WriteLine("Błędna wartość");
-                    MainMenu();
-                    break;
+                Console.WriteLine(s.Message);
+                Console.ReadKey();
+                Console.Clear();
             }
+
+            try
+            {
+
+                for (i = 0; i < 1; i++)
+                {
+
+                    Console.WriteLine("");
+                    Console.WriteLine("Witaj w Plan Master!");
+                    Console.WriteLine("Plany treningowe - wciśnij 1");
+                    Console.WriteLine("Kalkulatory kalorii - wciśnij 2");
+                    Console.WriteLine("Plany żywienia - wciśnij 3");
+                    Console.WriteLine("");
+
+                    num = Convert.ToInt32(Console.ReadLine());
+                    Console.Clear();
+
+                    switch (num)
+                    {
+                        case 1:
+                            PlanMenu();
+                            break;
+                        case 2:
+                            CalcMenu();
+                            break;
+                        case 3:
+                            Console.WriteLine("test"); //in progress
+                            break;
+                        default:
+                            Console.WriteLine("Błędna wartość");
+                            break;
+                    }
+                }
+            }
+            catch (Exception s)
+            {
+                Console.WriteLine(s.Message);
+                Console.ReadKey();
+                Console.Clear();
+            }
+
         }
+
         public static void PlanMenu()
         {
 
@@ -118,8 +135,7 @@ namespace PlanMaster
             Console.WriteLine("");
             Console.WriteLine("Plan na trzy dni - wciśnij 1");
             Console.WriteLine("Plan na cztery dni - wciśnij 2");
-            Console.WriteLine("Plan na pięć dni - wciśnij 3");
-            Console.WriteLine("Powrót do menu głównego - wciśnij 4");
+            Console.WriteLine("Plan na pięć dni - wciśnij 3");  
             Console.WriteLine("");
 
             int num = Convert.ToInt32(Console.ReadLine());
@@ -138,10 +154,6 @@ namespace PlanMaster
 
                 case 3:
                     FiveDaysPlan();
-
-                    break;
-                case 4:
-                    MainMenu();
 
                     break;
 
@@ -175,7 +187,6 @@ namespace PlanMaster
         {
             Console.WriteLine("Kalkulator podstawowej przemiany materii (BMR) - wciśnij 1");
             Console.WriteLine("Kalkulator całkowitej przemiany materii (CPM) - wciśnij 2");
-            Console.WriteLine("Cofnij - wciśnij 3");
             int num = Convert.ToInt32(Console.ReadLine());
 
             switch (num)
@@ -183,12 +194,11 @@ namespace PlanMaster
                 case 1:
                     BmrSexMenu();
                     break;
+
                 case 2:
                     CpmSexMenu();
                     break;
-                case 3:
-                    MainMenu();
-                    break;
+
                 default:
                     Console.WriteLine("Błędna wartość");
                     CalcMenu();
