@@ -24,7 +24,6 @@ namespace PlanMaster
                 for (i = 0; i < 1; i++)
                 {
 
-
                     do
                     {
                         Console.WriteLine("Logowanie - wciśnij 1");
@@ -67,6 +66,7 @@ namespace PlanMaster
                                 {
                                     Console.WriteLine("Poprawnie zalogowano");
                                     count--;
+                                    MainMenu();
                                 }
                                 else
                                 {
@@ -111,10 +111,14 @@ namespace PlanMaster
                 Main(null);
             }
 
+        }
+        public static void MainMenu()
+        {
+
             try
             {
 
-                for (i = 0; i < 1; i++)
+                for (int i = 0; i < 1; i++)
                 {
 
                     Console.WriteLine("");
@@ -124,7 +128,7 @@ namespace PlanMaster
                     Console.WriteLine("Plany żywienia - wciśnij 3");
                     Console.WriteLine("");
 
-                    num = Convert.ToInt32(Console.ReadLine());
+                    int num = Convert.ToInt32(Console.ReadLine());
                     Console.Clear();
 
                     switch (num)
@@ -149,8 +153,8 @@ namespace PlanMaster
                 Console.WriteLine(s.Message);
                 Console.ReadKey();
                 Console.Clear();
+                MainMenu();
             }
-
         }
 
         public static void PlanMenu()
