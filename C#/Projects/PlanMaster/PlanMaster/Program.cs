@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,9 +14,9 @@ namespace PlanMaster
             int i;
             int num;
             string log;
-            string logReg = null;
             string pass;
-            string passReg = null;
+            string linijka;
+            string linijka1;
             int count = 0;
 
             try
@@ -39,11 +40,30 @@ namespace PlanMaster
 
                                 Console.WriteLine("Podaj swój Login");
                                 log = Console.ReadLine();
+
+                                using (StreamReader streamR = new StreamReader("login.txt"))
+                                {
+                                    
+                                    while ((linijka = streamR.ReadLine()) != log)
+                                    {
+                                    }
+                                   
+                                }
+
                                 Console.WriteLine("Podaj swoje hasło");
                                 pass = Console.ReadLine();
+
+                                using (StreamReader streamR = new StreamReader("password.txt"))
+                                {
+                                    
+                                    while ((linijka1 = streamR.ReadLine()) != pass)
+                                    {
+                                    }
+                                }
+
                                 Console.Clear();
 
-                                if (log == logReg && pass == passReg)
+                                if (log == linijka && pass == linijka1)
                                 {
                                     Console.WriteLine("Poprawnie zalogowano");
                                     count--;
@@ -58,9 +78,18 @@ namespace PlanMaster
                             case 2:
 
                                 Console.WriteLine("Podaj login");
-                                logReg = Console.ReadLine();
+                                using (StreamWriter streamW = new StreamWriter(("login.txt"), true))
+                                {
+                                    string text = Console.ReadLine();
+                                    streamW.WriteLine(text); 
+                                }
                                 Console.WriteLine("Podaj hasło");
-                                passReg = Console.ReadLine();
+                                using (StreamWriter streamW = new StreamWriter(("password.txt"), true))
+                                {
+                                    string text = Console.ReadLine();
+
+                                    streamW.WriteLine(text);
+                                }
                                 Console.Clear();
                                 count++;
                                 break;
@@ -79,6 +108,7 @@ namespace PlanMaster
                 Console.WriteLine(s.Message);
                 Console.ReadKey();
                 Console.Clear();
+                Main(null);
             }
 
             try
