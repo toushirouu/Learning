@@ -28,7 +28,7 @@ namespace WordStreamingScript
                 foreach (XmlNode xn in xnList)
                 {
 
-                    using (StreamWriter StreamW = new StreamWriter((@"E:\Learning\C#\Projects\WordStreamingScript\WordStreamingScript\WordStreamingScript\bin\Debug\lol.txt"), true))
+                    using (StreamWriter StreamW = new StreamWriter(("lol.txt"), true))
                     {
                         StreamW.WriteLine(xn.InnerText);
                     }
