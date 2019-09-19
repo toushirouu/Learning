@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Xml;
 using System.Collections.Generic;
-using System.Collections;
 using System.Linq;
 using System.Text;
 using System.IO;
@@ -45,7 +44,6 @@ namespace WordStreamingScript
                             }
                         }
                         File.WriteAllLines("ClassNames.txt", File.ReadAllLines("temp.txt").Distinct());
-                       
                         break;
 
 
@@ -53,7 +51,7 @@ namespace WordStreamingScript
 
                         var doc = XDocument.Load(files[i]);   
                         var elementsToUpdate = doc.Descendants()
-                                                  .Where(o => o.Value == "Szymon" && !o.HasElements);
+                                                  .Where(o => o.Value == "David" && !o.HasElements);
 
                         foreach (XElement element in elementsToUpdate)
                         {
