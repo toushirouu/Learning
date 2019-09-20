@@ -14,27 +14,39 @@ namespace WordStreamingScript
         static void Main(string[] args)
         {
             int num;
-            string[] files = Directory.GetFiles(@"E:\Learning\C#\Projects\WordStreamingScript\WordStreamingScript\WordStreamingScript\bin\Debug", "*.xml");
+            string[] files = Directory.GetFiles(@"D:\XML Path", "*.xml", SearchOption.AllDirectories);
             foreach (string file in files)
             {
                 ProcessFile(file);
             }
+            Console.Clear();
             Console.WriteLine("Zrzucenie nazw obiektów do txt - wciśnij 1");
-            Console.WriteLine("Zamiana nazw obiektów - wciśnij 2");
+            Console.WriteLine("Zamiana nazw obiektów - wciśnij 2"); 
             num = Convert.ToInt32(Console.ReadLine());
+         
+            string name = null;
+            string newName = null;
+
+            if (num == 2)
+            {
+                Console.WriteLine("Enter element value to change");
+                name = Console.ReadLine();
+                Console.WriteLine("Enter new element value");
+                newName = Console.ReadLine();
+            }
             for (int i = 0; i < files.Length; i++)
             {
-
                 Console.WriteLine(files[i]);
                 XmlDocument xml = new XmlDocument();
                 xml.Load(files[i]);
-                XmlNodeList xnList = xml.SelectNodes("/Names/Name");
+                XmlNodeList xnList = xml.SelectNodes("annotation/object/name");
 
-                
                 switch (num)
 
-                {
+                { 
+
                     case 1:
+                        
                         foreach (XmlNode xn in xnList)
                         {
                             using (StreamWriter StreamW = new StreamWriter(("temp.txt"), true))
@@ -49,26 +61,26 @@ namespace WordStreamingScript
 
                     case 2:
 
-                        var doc = XDocument.Load(files[i]);   
+                        
+                        var doc = XDocument.Load(files[i]);
                         var elementsToUpdate = doc.Descendants()
-                                                  .Where(o => o.Value == "David" && !o.HasElements);
+                                                  .Where(o => o.Value == name && !o.HasElements); ;
 
                         foreach (XElement element in elementsToUpdate)
                         {
-                            element.Value = "new object name";
+                            element.Value = newName;
                         }
   
                         doc.Save(files[i]);
                         break;
                 }
             }
-            File.Delete(@"E:\Learning\C#\Projects\WordStreamingScript\WordStreamingScript\WordStreamingScript\bin\Debug\temp.txt");
+            File.Delete(@"C:\Users\PC\Desktop\label\Learning-master\C#\Projects\WordStreamingScript\WordStreamingScript\WordStreamingScript\bin\Debug\temp.txt");
         }
         public static void ProcessFile(string path)
         {
             Console.WriteLine("Processed file '{0}',", path);
         }
-
     }
 }
 
