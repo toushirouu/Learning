@@ -14,7 +14,9 @@ namespace WordStreamingScript
         static void Main(string[] args)
         {
             int num;
-            string[] files = Directory.GetFiles(@"D:\XML Path", "*.xml", SearchOption.AllDirectories);
+            Console.WriteLine("Enter directory");
+            string path = Console.ReadLine();
+            string[] files = Directory.GetFiles(@path, "*.xml", SearchOption.AllDirectories);
             foreach (string file in files)
             {
                 ProcessFile(file);
