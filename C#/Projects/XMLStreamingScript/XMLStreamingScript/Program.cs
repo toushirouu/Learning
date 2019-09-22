@@ -32,7 +32,6 @@ namespace WordStreamingScript
                 File.Copy(item, @path + @"\temp\" + Path.GetFileName(item));
             }
           
-
             Console.WriteLine("Zrzucenie nazw obiektów do txt - wciśnij 1");
             Console.WriteLine("Zamiana nazw obiektów - wciśnij 2");
             Console.WriteLine("First letter to Uppercase");
@@ -62,13 +61,13 @@ namespace WordStreamingScript
                     case 1:
                         foreach (XmlNode xn in xnList)
                         {
-                            using (StreamWriter StreamW = new StreamWriter(("temp.txt"), true))
+                            using (StreamWriter StreamW = new StreamWriter((@path+@"/temp/temp.txt"), true))
 
                             {
                                 StreamW.WriteLine(xn.InnerText);
                             }
                         }
-                        File.WriteAllLines("ClassNames.txt", File.ReadAllLines("temp.txt").Distinct());
+                        File.WriteAllLines("ClassNames.txt", File.ReadAllLines(@path+@"/temp/temp.txt").Distinct());
                         break;
 
                     case 2:
@@ -86,6 +85,7 @@ namespace WordStreamingScript
                         break;
 
                     case 3:
+                        
                         foreach (XmlNode xn in xnList)
                         {
                             UppercaseFirst(xn.InnerText);
@@ -94,7 +94,7 @@ namespace WordStreamingScript
                         break;
                 }
             }
-            File.Delete(@"E:\Learning\C#\Projects\WordStreamingScript\WordStreamingScript\WordStreamingScript\bin\Debug\temp.txt");
+            File.Delete(@path+@"/temp/temp.txt");
         }
         static void ProcessFile(string path)
         {
