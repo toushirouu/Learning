@@ -16,17 +16,22 @@ namespace WordStreamingScript
             int num;
             Console.WriteLine("Enter xml directory");
             string path = Console.ReadLine();
-            string[] path1 = Directory.GetDirectories(@path, "*.xml", SearchOption.AllDirectories);
-            string[] files = Directory.GetFiles(@path, "plik.xml", SearchOption.AllDirectories);
+            string[] files = Directory.GetFiles(@path, "*.xml", SearchOption.AllDirectories);
             foreach (string file in files)
             {
                 ProcessFile(file);
             }
 
-            for (int i = 0; i < path1.Length; i++)
+            if(!Directory.Exists(@path+@"\temp\"))
             {
-                File.Copy(@path1[i], @"C:\Users\studentwsb\Documents\visual studio 2015\Projects\qwerty\qwerty\bin\Debug\pliki\temp", true);
+                Directory.CreateDirectory(@path + @"\temp\");
             }
+            foreach (var item in files)
+            {
+                
+                File.Copy(item, @path + @"\temp\" + Path.GetFileName(item));
+            }
+          
 
             Console.WriteLine("Zrzucenie nazw obiektów do txt - wciśnij 1");
             Console.WriteLine("Zamiana nazw obiektów - wciśnij 2");
