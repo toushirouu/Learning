@@ -67,7 +67,7 @@ namespace WordStreamingScript
                                 StreamW.WriteLine(xn.InnerText);
                             }
                         }
-                        File.WriteAllLines("ClassNames.txt", File.ReadAllLines(@path+@"/temp/temp.txt").Distinct());
+                        File.WriteAllLines(@path+" ClassNames.txt", File.ReadAllLines(@path+@"/temp/temp.txt").Distinct());
                         break;
 
                     case 2:
@@ -85,10 +85,10 @@ namespace WordStreamingScript
                         break;
 
                     case 3:
-                        
+
                         foreach (XmlNode xn in xnList)
                         {
-                            UppercaseFirst(xn.InnerText);
+                            UppercaseFirst(xn.Value);
                         }
                         xml.Save(files[i]);
                         break;
