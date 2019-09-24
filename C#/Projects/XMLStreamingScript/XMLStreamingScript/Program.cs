@@ -85,14 +85,14 @@ namespace WordStreamingScript
                          doc.Save(files[i]);
                          break;
 
-                     case 3:
+                    /* case 3:
 
                          foreach (XmlNode xn in xnList)
                          {
                              UppercaseFirst(xn.Value);
                          }
                          xml.Save(files[i]);
-                         break;
+                         break; */
                  }
              }
              File.Delete(@path+@"/temp/temp.txt");
@@ -101,13 +101,13 @@ namespace WordStreamingScript
          {
              Console.WriteLine("Processed file '{0}',", path);
          }
-         static string UppercaseFirst(string s)
+         /*static string UppercaseFirst(string s)
          {
              if (string.IsNullOrEmpty(s))
              {
                  return string.Empty;
              }
              return char.ToUpper(s[0]) + s.Substring(1);
-         } 
+         } */
         }
     }
