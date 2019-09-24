@@ -13,100 +13,101 @@ namespace WordStreamingScript
     {
         static void Main(string[] args)
         {
-            int num;
-            Console.WriteLine("Enter xml directory");
-            string path = Console.ReadLine();
-            string[] files = Directory.GetFiles(@path, "*.xml", SearchOption.AllDirectories);
-            foreach (string file in files)
-            {
-                ProcessFile(file);
-            }
 
-            if(!Directory.Exists(@path+@"\temp\"))
-            {
-                Directory.CreateDirectory(@path + @"\temp\");
-            }
-            foreach (var item in files)
-            {
-                
-                File.Copy(item, @path + @"\temp\" + Path.GetFileName(item));
-            }
-          
-            Console.WriteLine("Zrzucenie nazw obiektów do txt - wciśnij 1");
-            Console.WriteLine("Zamiana nazw obiektów - wciśnij 2");
-            Console.WriteLine("First letter to Uppercase");
-            num = Convert.ToInt32(Console.ReadLine());
+             int num;
+             Console.WriteLine("Enter xml directory");
+             string path = Console.ReadLine();
+             string[] files = Directory.GetFiles(@path, "*.xml", SearchOption.AllDirectories);
+             foreach (string file in files)
+             {
+                 ProcessFile(file);
+             }
 
-            string name = null;
-            string newName = null;
+             foreach (string dirPath in Directory.GetDirectories(@path, "*", SearchOption.AllDirectories))
+             
+                Directory.CreateDirectory(dirPath.Replace(@path, @path + @"\temp\"));
+             
+ 
+            foreach (string newPath in Directory.GetFiles(@path, "*.xml*", SearchOption.AllDirectories))
+             
+                File.Copy(newPath, newPath.Replace(@path, @path + @"\temp\"), true);
+             
 
-            if (num == 2)
-            {
-                Console.WriteLine("Enter element value to change");
-                name = Console.ReadLine();
-                Console.WriteLine("Enter new element value");
-                newName = Console.ReadLine();
-            }
-            for (int i = 0; i < files.Length; i++)
-            {
+             Console.WriteLine("Zrzucenie nazw obiektów do txt - wciśnij 1");
+             Console.WriteLine("Zamiana nazw obiektów - wciśnij 2");
+             Console.WriteLine("First letter to Uppercase");
+             num = Convert.ToInt32(Console.ReadLine());
 
-                Console.WriteLine(files[i]);
-                XmlDocument xml = new XmlDocument();
-                xml.Load(files[i]);
-                XmlNodeList xnList = xml.SelectNodes("/Names/Name");
+             string name = null;
+             string newName = null;
 
-                switch (num)
-                {
+             if (num == 2)
+             {
+                 Console.WriteLine("Enter element value to change");
+                 name = Console.ReadLine();
+                 Console.WriteLine("Enter new element value");
+                 newName = Console.ReadLine();
+             }
+             for (int i = 0; i < files.Length; i++)
+             {
 
-                    case 1:
-                        foreach (XmlNode xn in xnList)
-                        {
-                            using (StreamWriter StreamW = new StreamWriter((@path+@"/temp/temp.txt"), true))
+                 Console.WriteLine(files[i]);
+                 XmlDocument xml = new XmlDocument();
+                 xml.Load(files[i]);
+                 XmlNodeList xnList = xml.SelectNodes("/Names/Name");
 
-                            {
-                                StreamW.WriteLine(xn.InnerText);
-                            }
-                        }
-                        File.WriteAllLines(@path+" ClassNames.txt", File.ReadAllLines(@path+@"/temp/temp.txt").Distinct());
-                        break;
+                 switch (num)
+                 {
 
-                    case 2:
+                     case 1:
+                         foreach (XmlNode xn in xnList)
+                         {
+                             using (StreamWriter StreamW = new StreamWriter((@path+@"/temp/temp.txt"), true))
+
+                             {
+                                 StreamW.WriteLine(xn.InnerText);
+                             }
+                         }
+                         File.WriteAllLines(@path+" ClassNames.txt", File.ReadAllLines(@path+@"/temp/temp.txt").Distinct());
+                         break;
+
+                     case 2:
 
 
-                        var doc = XDocument.Load(files[i]);
-                        var elementsToUpdate = doc.Descendants()
-                                                  .Where(o => o.Value == name && !o.HasElements); ;
+                         var doc = XDocument.Load(files[i]);
+                         var elementsToUpdate = doc.Descendants()
+                                                   .Where(o => o.Value == name && !o.HasElements); ;
 
-                        foreach (XElement element in elementsToUpdate)
-                        {
-                            element.Value = newName;
-                        }
-                        doc.Save(files[i]);
-                        break;
+                         foreach (XElement element in elementsToUpdate)
+                         {
+                             element.Value = newName;
+                         }
+                         doc.Save(files[i]);
+                         break;
 
-                    case 3:
+                     case 3:
 
-                        foreach (XmlNode xn in xnList)
-                        {
-                            UppercaseFirst(xn.Value);
-                        }
-                        xml.Save(files[i]);
-                        break;
-                }
-            }
-            File.Delete(@path+@"/temp/temp.txt");
-        }
-        static void ProcessFile(string path)
-        {
-            Console.WriteLine("Processed file '{0}',", path);
-        }
-        static string UppercaseFirst(string s)
-        {
-            if (string.IsNullOrEmpty(s))
-            {
-                return string.Empty;
-            }
-            return char.ToUpper(s[0]) + s.Substring(1);
+                         foreach (XmlNode xn in xnList)
+                         {
+                             UppercaseFirst(xn.Value);
+                         }
+                         xml.Save(files[i]);
+                         break;
+                 }
+             }
+             File.Delete(@path+@"/temp/temp.txt");
+         }
+         static void ProcessFile(string path)
+         {
+             Console.WriteLine("Processed file '{0}',", path);
+         }
+         static string UppercaseFirst(string s)
+         {
+             if (string.IsNullOrEmpty(s))
+             {
+                 return string.Empty;
+             }
+             return char.ToUpper(s[0]) + s.Substring(1);
+         } 
         }
     }
-}
