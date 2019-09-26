@@ -13,26 +13,26 @@ namespace WordStreamingScript
     {
         static void Main(string[] args)
         {
-            int numSwitch;
+            int numSwitch; 
 
             Console.WriteLine("Enter xml directory");
-            string path = Console.ReadLine();
+            string xmlPath = Console.ReadLine();
 
-            string[] files = Directory.GetFiles(@path, "*.xml", SearchOption.AllDirectories);
-            foreach (string file in files)
+            string[] xmlFilesDirectory = Directory.GetFiles(@xmlPath, "*.xml", SearchOption.AllDirectories);
+            foreach (string file in xmlFilesDirectory)
             {
                 ProcessFile(file);
             }
-            foreach (string dirPath in Directory.GetDirectories(@path, "*", SearchOption.AllDirectories))
+            foreach (string dirPath in Directory.GetDirectories(@xmlPath, "*", SearchOption.AllDirectories))
 
-                Directory.CreateDirectory(dirPath.Replace(@path, @path + @"\temp\"));
+                Directory.CreateDirectory(dirPath.Replace(@xmlPath, @xmlPath + @"\temp\"));
 
 
-            foreach (string newPath in Directory.GetFiles(@path, "*.xml*", SearchOption.AllDirectories))
+            foreach (string newPath in Directory.GetFiles(@xmlPath, "*.xml*", SearchOption.AllDirectories))
 
-                File.Copy(newPath, newPath.Replace(@path, @path + @"\temp\"), true);
+                File.Copy(newPath, newPath.Replace(@xmlPath, @xmlPath + @"\temp\"), true);
 
-            FileStream filestream = new FileStream(@path + @"/temp/logtemp.txt", FileMode.Create);
+            FileStream filestream = new FileStream(@xmlPath + @"/temp/logtemp.txt", FileMode.Create);
             var streamwriter = new StreamWriter(filestream);
             Console.WriteLine("Zrzucenie nazw obiektów do txt - wciśnij 1");
             Console.WriteLine("Zamiana nazw obiektów - wciśnij 2");
@@ -49,12 +49,12 @@ namespace WordStreamingScript
                 Console.WriteLine("Enter new element value");
                 newName = Console.ReadLine();
             }
-            for (int i = 0; i < files.Length; i++)
+            for (int i = 0; i < xmlFilesDirectory.Length; i++)
             {
 
-                Console.WriteLine(files[i]);
+                Console.WriteLine(xmlFilesDirectory[i]);
                 XmlDocument xml = new XmlDocument();
-                xml.Load(files[i]);
+                xml.Load(xmlFilesDirectory[i]);
                 XmlNodeList xnList = xml.SelectNodes("/annotation/object/name");
 
                 switch (numSwitch)
@@ -63,7 +63,7 @@ namespace WordStreamingScript
                     case 1:
                         foreach (XmlNode xn in xnList)
                         {
-                            using (StreamWriter StreamW = new StreamWriter((@path + @"/temp/temp.txt"), true))
+                            using (StreamWriter StreamW = new StreamWriter((@xmlPath + @"/temp/temp.txt"), true))
 
                             {
                                 Console.WriteLine(xn.InnerText);
@@ -76,7 +76,7 @@ namespace WordStreamingScript
 
                     case 2:
 
-                        var doc = XDocument.Load(files[i]);
+                        var doc = XDocument.Load(xmlFilesDirectory[i]);
                         var elementsToUpdate = doc.Descendants()
                                                   .Where(o => o.Value == name && !o.HasElements); ;
 
@@ -86,7 +86,7 @@ namespace WordStreamingScript
 
                         }
 
-                        doc.Save(files[i]);
+                        doc.Save(xmlFilesDirectory[i]);
 
                         break;
 
@@ -102,10 +102,10 @@ namespace WordStreamingScript
                 Console.SetOut(streamwriter);
                 Console.SetError(streamwriter);
             }
-            File.WriteAllLines(@path + " ClassNames.txt", File.ReadAllLines(@path + @"/temp/temp.txt").Distinct());
-            File.WriteAllLines(@path + " log.txt", File.ReadAllLines(@path + @"/temp/logtemp.txt").Distinct());
+            File.WriteAllLines(@xmlPath + " ClassNames.txt", File.ReadAllLines(@xmlPath + @"/temp/temp.txt").Distinct());
+            File.WriteAllLines(@xmlPath + " log.txt", File.ReadAllLines(@xmlPath + @"/temp/logtemp.txt").Distinct());
 
-            File.Delete(@path + @"/temp/temp.txt");
+            File.Delete(@xmlPath + @"/temp/temp.txt");
         }
         static void ProcessFile(string path)
         {
