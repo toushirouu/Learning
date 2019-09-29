@@ -11,92 +11,100 @@ namespace WordStreamingScript
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main(string[] args) //This app has two functions, mass exctration objects names from XML file and changin objects name in all XML files
+                                        //The rest of the comments are just for my learning
         {
-            int numSwitch; 
+            int numSwitch;
+            string objectName = null;
+            string objectNewName = null;
 
             Console.WriteLine("Enter xml directory");
             string xmlPath = Console.ReadLine();
 
+            //searching for .xml files in the given directory and subdirectories, saving directories in array
             string[] xmlFilesDirectory = Directory.GetFiles(@xmlPath, "*.xml", SearchOption.AllDirectories);
+
+            //print all files name on screen
             foreach (string file in xmlFilesDirectory)
             {
                 ProcessFile(file);
             }
+
+            //getting all directories and subdirectories from enterd xmlPath, then creating temp folder inside
             foreach (string dirPath in Directory.GetDirectories(@xmlPath, "*", SearchOption.AllDirectories))
 
                 Directory.CreateDirectory(dirPath.Replace(@xmlPath, @xmlPath + @"\temp\"));
 
-
+            //getting all files from xmlPath directory and subdirectories, then copying them to temp folder
             foreach (string newPath in Directory.GetFiles(@xmlPath, "*.xml*", SearchOption.AllDirectories))
 
                 File.Copy(newPath, newPath.Replace(@xmlPath, @xmlPath + @"\temp\"), true);
 
+
+            //creating txt file in which wiil be streaming everything printed on screen
             FileStream filestream = new FileStream(@xmlPath + @"/temp/logtemp.txt", FileMode.Create);
             var streamwriter = new StreamWriter(filestream);
+
             Console.WriteLine("Zrzucenie nazw obiektów do txt - wciśnij 1");
             Console.WriteLine("Zamiana nazw obiektów - wciśnij 2");
             Console.WriteLine("First letter to Uppercase");
-            numSwitch = Convert.ToInt32(Console.ReadLine());
 
-            string name = null;
-            string newName = null;
+            numSwitch = Convert.ToInt32(Console.ReadLine());
 
             if (numSwitch == 2)
             {
                 Console.WriteLine("Enter element value to change");
-                name = Console.ReadLine();
+                objectName = Console.ReadLine();
                 Console.WriteLine("Enter new element value");
-                newName = Console.ReadLine();
+                objectNewName = Console.ReadLine();
             }
+
             for (int i = 0; i < xmlFilesDirectory.Length; i++)
             {
-
+                //printing xml files directory on screen
                 Console.WriteLine(xmlFilesDirectory[i]);
+
+                //creating new xml document named xml
                 XmlDocument xml = new XmlDocument();
+
+                //loading every xml files to xml
                 xml.Load(xmlFilesDirectory[i]);
+
+                //creating xml list named xnList, selecting specific nodes from xml
                 XmlNodeList xnList = xml.SelectNodes("/annotation/object/name");
 
                 switch (numSwitch)
                 {
-
                     case 1:
+
                         foreach (XmlNode xn in xnList)
                         {
+                            //creating variable named streamW, pointing the path, true allow to overwritting
                             using (StreamWriter StreamW = new StreamWriter((@xmlPath + @"/temp/temp.txt"), true))
 
                             {
+                                //printing on screen every objects name
                                 Console.WriteLine(xn.InnerText);
+                                //streaming to txt file every objects name
                                 StreamW.WriteLine(xn.InnerText);
                             }
                         }
-
-
                         break;
 
                     case 2:
 
+
                         var doc = XDocument.Load(xmlFilesDirectory[i]);
                         var elementsToUpdate = doc.Descendants()
-                                                  .Where(o => o.Value == name && !o.HasElements); ;
+                                                  .Where(o => o.Value == objectName && !o.HasElements); ;
 
                         foreach (XElement element in elementsToUpdate)
                         {
-                            element.Value = newName;
-
+                            element.Value = objectNewName;
                         }
-
                         doc.Save(xmlFilesDirectory[i]);
-
                         break;
 
-                        /* case 3:
-                             foreach (XmlNode xn in xnList)
-                             {
-                                 UppercaseFirst(xn.Value);
-                             }
-                             xml.Save(files[i]);
-                             break; */
                 }
                 streamwriter.AutoFlush = true;
                 Console.SetOut(streamwriter);
@@ -107,17 +115,12 @@ namespace WordStreamingScript
 
             File.Delete(@xmlPath + @"/temp/temp.txt");
         }
+
+        //print file name on screen
         static void ProcessFile(string path)
         {
             Console.WriteLine("Processed file '{0}',", path);
         }
-        /*static string UppercaseFirst(string s)
-        {
-            if (string.IsNullOrEmpty(s))
-            {
-                return string.Empty;
-            }
-            return char.ToUpper(s[0]) + s.Substring(1);
-        } */
+
     }
 }
