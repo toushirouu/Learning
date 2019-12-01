@@ -1,33 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MagicDestroyers.Equipment.Armors.Heavy;
+using MagicDestroyers.Equipment.Weapons.Sharp;
 
 namespace MagicDestroyers.Characters.Melee
 {
     class Warrior
     {
-        public int AbilityPoints { get; set; }
-        public int HealthPoints { get; set; }
-        public int Level { get; set; }
 
-        public string Faction { get; set; }
-        public string Name { get; set; }
+        private int abilityPoints;
+        private int healthPoints;
+        private int level;
+
+        private string faction;
+        private string name;
+
+        private Chainlink bodyArmor;
+        private Axe weapon;
 
         public void Strike()
         {
-
+            throw new NotImplementedException();
         }
 
         public void Execute()
         {
-
+            throw new NotImplementedException();
         }
 
         public void SkinHarden()
         {
-
+            throw new NotImplementedException();
         }
+
     }
 }

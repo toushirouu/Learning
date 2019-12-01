@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MagicDestroyers.Equipment.Armors.Leather;
+using MagicDestroyers.Equipment.Weapons.Sharp;
+using System;
 
 namespace MagicDestroyers.Characters.Melee
 {
     class Assassin
     {
+
         private int abilityPoints;
         private int healthPoints;
         private int level;
@@ -15,14 +14,24 @@ namespace MagicDestroyers.Characters.Melee
         private string faction;
         private string name;
 
-        private 
+        private LightLeatherVest bodyArmor;
+        private Sword weapon;
 
-        public void Raze()
+        public void Raze()  
         {
-            throw new
+            throw new NotImplementedException();
         }
 
+        public void BleedToDeath()
+        {
+            throw new NotImplementedException();
+        }
 
+        public void Survival()
+        {
+            throw new NotImplementedException();
+        }
 
     }
+
 }

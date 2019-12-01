@@ -1,18 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using MagicDestroyers.Equipment.Armors.Light;
+using MagicDestroyers.Equipment.Weapons.Blunt;
 namespace MagicDestroyers.Characters.Spellcasters
 {
     class Mage
     {
-        public int AbilityPoints { get; set; }
-        public int HealthPoints { get; set; }
-        public int Level { get; set; }
 
-        public string Faction { get; set; }
-        public string Name { get; set; }
+        private int abilityPoints;
+        private int healthPoints;
+        private int level;
+
+        private string faction;
+        private string name;
+
+        private ClothRobe bodyArmor;
+        private Staff weapon;
+
+        public void ArcaneWrath()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Firewall()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Meditation()
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
